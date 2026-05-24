@@ -1,6 +1,6 @@
 <x-guest-layout>
     <div class="mb-4 text-sm text-gray-600">
-        {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+        {{ __('¿Olvidaste tu password? Coloca tu email de registro y te enviaremos las instrucciones para crear uno nuevo.') }}
     </div>
 
     <!-- Session Status -->
@@ -16,10 +16,23 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Email Password Reset Link') }}
-            </x-primary-button>
+        <div class="flex justify-between my-5">
+            
+            <x-link
+                :href="route('login')"
+            >
+                ¿Ya tienes cuenta? Inicia Sesión
+            </x-link>
+
+            <x-link 
+                :href="route('register')"
+            >
+                Crear Cuenta
+            </x-link>
         </div>
+
+        <x-primary-button class="w-full justify-center">
+            {{ ('Enviar Instrucciones') }}
+        </x-primary-button>
     </form>
 </x-guest-layout>

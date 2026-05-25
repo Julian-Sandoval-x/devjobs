@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->integer('rol')->after('email')->unsigned()->default(1); // 1 = dev 2 = recruiter
+        Schema::create('salarios', function (Blueprint $table) {
+            $table->id();
+            $table->string('salario');
+            $table->timestamps();
         });
     }
 
@@ -21,8 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('rol');
-        });
+        Schema::dropIfExists('salarios');
     }
 };

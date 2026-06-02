@@ -13,6 +13,10 @@ class VacanteController extends Controller
      */
     public function index()
     {
+        $response = Gate::inspect('viewAny', Vacante::class);
+        if($response->denied()) {
+            abort(403, $response->message());
+        }
         return view('vacantes.index');
     }
 
@@ -21,6 +25,9 @@ class VacanteController extends Controller
      */
     public function create()
     {
+        if(Gate::denies('create', Vacante::class)) {
+            abort(403, 'No tienes permisos para crear vacantes');
+        }
         return view('vacantes.create');
     }
 

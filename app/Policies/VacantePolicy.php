@@ -11,9 +11,9 @@ class VacantePolicy
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(User $user): bool
+    public function viewAny(User $user): Response
     {
-        return false;
+        return $user->rol === 2 ? Response::allow() : Response::deny('No tienes permisos para ver las vacantes');
     }
 
     /**
@@ -27,9 +27,9 @@ class VacantePolicy
     /**
      * Determine whether the user can create models.
      */
-    public function create(User $user): bool
+    public function create(User $user): Response
     {
-        return false;
+        return $user->rol === 2 ? Response::allow() : Response::deny('No tienes permisos para crear vacantes');
     }
 
     /**

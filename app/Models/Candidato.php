@@ -8,5 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 #[Fillable('user_id', 'vacante_id', 'cv')]
 class Candidato extends Model
 {
-    //
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }
